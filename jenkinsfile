@@ -1,0 +1,13 @@
+node {
+    def sum = 5+10;
+    String hello = "Hello World";
+    stage('Preparation') {
+        echo "This is Preperation stage. The result of 5 + 10 is $sum"
+    }
+    stage('Build') {
+        echo "This is Build stage, try $hello"
+    }
+    stage('Results') {
+        echo "this is result stage"
+    }
+}
