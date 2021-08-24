@@ -16,9 +16,9 @@ node {
         println "${params.VERSION}"
     }
     stage('Install Homebrew') {
-         sh "-c "$(curl -fsSL https://raw.githubusercontent.com/linuxbrew/install/master/install.sh)""
-         sh "echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile"
-         sh "sheval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)""
+         sh '''-c "$(curl -fsSL https://raw.githubusercontent.com/linuxbrew/install/master/install.sh)"'''
+         sh '''echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile'''
+         sh '''sheval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'''
     }
     stage('Install Helm') {
          sh 'brew install helm'
