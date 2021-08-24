@@ -15,12 +15,14 @@ node {
         println "This is Preperation stage. The result of 5 + 10 is $sum"
         println "${params.VERSION}"
     }
+    stage('Install Homebrew') {
+         sh '-c "$(curl -fsSL https://raw.githubusercontent.com/linuxbrew/install/master/install.sh)"'
+         sh 'echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bash_profile'
+         sh 'sheval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+    }
     stage('Install Helm') {
-         sh 'wget https://get.helm.sh/helm-v3.6.1-linux-amd64.tar.gz'
-         sh 'ls -a'
-         sh 'tar -xvzf helm-v3.6.1-linux-amd64.tar.gz'
-         sh 'helm version'
-         sh 'helm pull bitnami/wordpress'
+         sh 'brew install helm'
+
     }
     stage('Build') {
         echo "This is Build stage, try $hello"
