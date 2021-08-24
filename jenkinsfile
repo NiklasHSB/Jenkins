@@ -17,7 +17,8 @@ node {
     }
     stage('Build') {
         echo "This is Build stage, try $hello"
-        sh "helm pull bitnami/wordpress"
+        bash "#!/bin/bash
+        helm pull bitnami/wordpress"
     }
     stage('Results') {
         echo "this is result stage"
