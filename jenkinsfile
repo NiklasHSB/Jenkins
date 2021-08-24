@@ -15,11 +15,19 @@ node {
         println "This is Preperation stage. The result of 5 + 10 is $sum"
         println "${params.VERSION}"
     }
+    stage('Install Helm' {
+         sh 'wget https://get.helm.sh/helm-v3.6.1-linux-amd64.tar.gz'
+         sh 'ls -a'
+         sh 'tar -xvzf helm-v3.6.1-linux-amd64.tar.gz'
+         sh 'sudo cp linux-amd64/helm /usr/bin'
+         sh 'helm version'
+         sh 'helm pull bitnami/wordpress'
+    }
     stage('Build') {
         echo "This is Build stage, try $hello"
         bash '''#!/bin/bash
                  echo "hello world" 
-                 helm pull bitnami/wordpress
+                 
          '''
     }
     stage('Results') {
